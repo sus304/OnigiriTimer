@@ -9,7 +9,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>900</width>
+    <width>1200</width>
     <height>350</height>
    </rect>
   </property>
@@ -21,12 +21,12 @@
 color: rgb(255, 255, 255);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QGroupBox" name="groupBox_timer_v3">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>640</x>
       <y>0</y>
-      <width>241</width>
+      <width>541</width>
       <height>231</height>
      </rect>
     </property>
@@ -41,8 +41,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QLabel" name="label_timer_v3_countup">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>20</y>
+       <x>340</x>
+       <y>80</y>
        <width>171</width>
        <height>71</height>
       </rect>
@@ -50,7 +50,7 @@ color: rgb(255, 255, 255);</string>
      <property name="font">
       <font>
        <family>メイリオ</family>
-       <pointsize>45</pointsize>
+       <pointsize>55</pointsize>
       </font>
      </property>
      <property name="text">
@@ -63,8 +63,8 @@ color: rgb(255, 255, 255);</string>
     <widget class="QLabel" name="label_timer_v3_countdown">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>100</y>
+       <x>40</x>
+       <y>80</y>
        <width>171</width>
        <height>71</height>
       </rect>
@@ -72,7 +72,7 @@ color: rgb(255, 255, 255);</string>
      <property name="font">
       <font>
        <family>メイリオ</family>
-       <pointsize>45</pointsize>
+       <pointsize>55</pointsize>
       </font>
      </property>
      <property name="text">
@@ -82,30 +82,11 @@ color: rgb(255, 255, 255);</string>
       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
      </property>
     </widget>
-    <widget class="QProgressBar" name="progressBar_timer_v3">
-     <property name="geometry">
-      <rect>
-       <x>40</x>
-       <y>180</y>
-       <width>181</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="layoutDirection">
-      <enum>Qt::LayoutDirection::LeftToRight</enum>
-     </property>
-     <property name="value">
-      <number>24</number>
-     </property>
-     <property name="textVisible">
-      <bool>false</bool>
-     </property>
-    </widget>
    </widget>
    <widget class="QPushButton" name="pushButton_timer_v3_start">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>940</x>
       <y>250</y>
       <width>241</width>
       <height>51</height>
@@ -147,7 +128,7 @@ QPushButton:hover:!pressed {
    <widget class="QGroupBox" name="groupBox_2">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>320</x>
       <y>0</y>
       <width>241</width>
       <height>231</height>
@@ -417,7 +398,7 @@ QPushButton:hover:!pressed {
    <widget class="QPushButton" name="pushButton_timer_lap">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>320</x>
       <y>250</y>
       <width>241</width>
       <height>51</height>
@@ -459,7 +440,7 @@ QPushButton:hover:!pressed {
    <widget class="QLineEdit" name="lineEdit_timer_v3_shortcut_key">
     <property name="geometry">
      <rect>
-      <x>710</x>
+      <x>1020</x>
       <y>310</y>
       <width>141</width>
       <height>22</height>
@@ -487,7 +468,7 @@ border-bottom: 1px solid rgb(255,255,255);</string>
    <widget class="QLineEdit" name="lineEdit_timer_lap_shortcut_key">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>400</x>
       <y>310</y>
       <width>141</width>
       <height>22</height>
@@ -515,7 +496,7 @@ border-bottom: 1px solid rgb(255,255,255);</string>
    <widget class="QLabel" name="label_19">
     <property name="geometry">
      <rect>
-      <x>360</x>
+      <x>320</x>
       <y>310</y>
       <width>81</width>
       <height>21</height>
@@ -536,7 +517,7 @@ border-bottom: 1px solid rgb(255,255,255);</string>
    <widget class="QLabel" name="label_20">
     <property name="geometry">
      <rect>
-      <x>630</x>
+      <x>940</x>
       <y>310</y>
       <width>81</width>
       <height>21</height>
@@ -664,7 +645,7 @@ QPushButton:hover:!pressed {
       <rect>
        <x>20</x>
        <y>110</y>
-       <width>161</width>
+       <width>201</width>
        <height>21</height>
       </rect>
      </property>
@@ -674,7 +655,7 @@ QPushButton:hover:!pressed {
       </font>
      </property>
      <property name="text">
-      <string>v3タイマーショートカットキー</string>
+      <string>v3タイマーstartショートカットキー</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
@@ -739,7 +720,7 @@ QPushButton:hover:!pressed {
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>180</y>
+       <y>240</y>
        <width>161</width>
        <height>21</height>
       </rect>
@@ -760,7 +741,7 @@ QPushButton:hover:!pressed {
      <property name="geometry">
       <rect>
        <x>150</x>
-       <y>210</y>
+       <y>270</y>
        <width>31</width>
        <height>21</height>
       </rect>
@@ -802,7 +783,7 @@ QPushButton:hover:!pressed {
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>200</y>
+       <y>260</y>
        <width>121</width>
        <height>41</height>
       </rect>
@@ -811,11 +792,87 @@ QPushButton:hover:!pressed {
       <bool>true</bool>
      </property>
     </widget>
+    <widget class="QKeySequenceEdit" name="keySequenceEdit_timer_v3_reverse_shortcut">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>190</y>
+       <width>121</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <property name="clearButtonEnabled">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_24">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>170</y>
+       <width>191</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>v3裏打ちショートカットキー</string>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButton_timer_v3_reverse_shortcut_fix">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>200</y>
+       <width>31</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QPushButton {
+  color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0);
+  border-radius:6px;
+  border-color: rgb(255, 255, 255);
+  border-style:solid;
+  border-width:2px;
+ 
+}
+
+ 
+QPushButton:hover:pressed {
+  background-color: rgb(210, 210, 210);
+}
+ 
+
+QPushButton:hover:!pressed {
+  background-color: rgba(223, 223, 223, 120);
+}</string>
+     </property>
+     <property name="text">
+      <string>-&gt;</string>
+     </property>
+     <property name="flat">
+      <bool>true</bool>
+     </property>
+    </widget>
    </widget>
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
-      <x>300</x>
+      <x>280</x>
       <y>10</y>
       <width>20</width>
       <height>321</height>
@@ -823,6 +880,97 @@ QPushButton:hover:!pressed {
     </property>
     <property name="orientation">
      <enum>Qt::Orientation::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_timer_v3_reverse">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>250</y>
+      <width>241</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+  color: rgb(255, 255, 255);
+  background-color: rgba(255, 255, 255, 0);
+  border-radius:6px;
+  border-color: rgb(255, 255, 255);
+  border-style:solid;
+  border-width:2px;
+ 
+}
+
+ 
+QPushButton:hover:pressed {
+  background-color: rgb(210, 210, 210);
+}
+ 
+
+QPushButton:hover:!pressed {
+  background-color: rgba(223, 223, 223, 120);
+}</string>
+    </property>
+    <property name="text">
+     <string>裏打ち</string>
+    </property>
+    <property name="flat">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QLabel" name="label_23">
+    <property name="geometry">
+     <rect>
+      <x>670</x>
+      <y>310</y>
+      <width>81</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>ショートカット</string>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignLeading|Qt::AlignmentFlag::AlignLeft|Qt::AlignmentFlag::AlignVCenter</set>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="lineEdit_timer_v3_reverse_shortcut_key">
+    <property name="geometry">
+     <rect>
+      <x>750</x>
+      <y>310</y>
+      <width>141</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>11</pointsize>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border: none;
+border-bottom: 1px solid rgb(255,255,255);</string>
+    </property>
+    <property name="text">
+     <string>Enter</string>
+    </property>
+    <property name="readOnly">
+     <bool>true</bool>
     </property>
    </widget>
   </widget>
