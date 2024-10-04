@@ -34,7 +34,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->label_timer_v3_countup->setText(convertCountupSec(0));
     ui->label_timer_v3_countdown->setText(convertCountdownSec(0));
-    ui->progressBar_timer_v3->setValue(100);
     ui->label_timer_lap_countup->setText(convertMinSec(0));
     ui->label_laptime_average->setText(convertMinSec(0));
     ui->label_speed->setText(QString::number(0));
@@ -102,7 +101,6 @@ void MainWindow::updateTimerV3() {
 
     if (time_v3 <= 30000) {
         ui->label_timer_v3_countdown->setText(convertCountdownSec(time_v3));
-        ui->progressBar_timer_v3->setValue(std::floor(float(30000 - time_v3) / 30000.0 * 100.0));
         if (time_v3 == 30000) {
             if (ui->radioButton_30s_sound_enable->isChecked()) {
                try {
@@ -130,7 +128,7 @@ void MainWindow::startTimerV3(){
 
     ui->label_timer_v3_countup->setText(convertCountupSec(0));
     ui->label_timer_v3_countdown->setText(convertCountdownSec(0));
-    ui->progressBar_timer_v3->setValue(100);
+
 }
 
 void MainWindow::startTimerLap() {
