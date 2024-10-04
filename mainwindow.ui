@@ -82,6 +82,22 @@ color: rgb(255, 255, 255);</string>
       <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
      </property>
     </widget>
+    <widget class="QLabel" name="label_v3_current_indicator">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>521</width>
+       <height>201</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+    <zorder>label_v3_current_indicator</zorder>
+    <zorder>label_timer_v3_countdown</zorder>
+    <zorder>label_timer_v3_countup</zorder>
    </widget>
    <widget class="QPushButton" name="pushButton_timer_v3_start">
     <property name="geometry">

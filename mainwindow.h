@@ -21,6 +21,20 @@ QT_END_NAMESPACE
 #define CONST_V3_TIMESTEP 1000  // ms
 #define CONST_LAP_TIMESTEP 1000 // ms
 
+static const QString groupbox_header("QLabel {");
+static const QString groupbox_footer("}");
+static const QString background_color("color: rgb(63, 63, 63);");
+static const QString color_while("color: rgb(255, 255, 255);");
+static const QString bgc_clear("background-color: rgba(255, 255, 255, 0);");
+static const QString bgc_green("background-color: limegreen;");
+static const QString bgc_yellow("background-color: gold;");
+static const QString bgc_red("background-color: rgb(220, 20, 60);");
+static const QString groupbox_clear_style = groupbox_header + color_while + bgc_clear + groupbox_footer;
+static const QString groupbox_green_style = groupbox_header + color_while + bgc_green + groupbox_footer;
+static const QString groupbox_yellow_style = groupbox_header + color_while + bgc_yellow + groupbox_footer;
+static const QString groupbox_red_style = groupbox_header + color_while + bgc_red + groupbox_footer;
+
+
 
 class TimerWorker : public QObject {
     Q_OBJECT
@@ -82,6 +96,10 @@ private slots:
 
     void on_radioButton_30s_sound_enable_clicked();
 
+    void on_pushButton_timer_v3_reverse_clicked();
+
+    void on_pushButton_timer_v3_reverse_shortcut_fix_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -97,6 +115,7 @@ private:
     unsigned long lap_log[5];
 
     QKeySequence timer_v3_shortcut_keyseq;
+    QKeySequence timer_v3_reverse_shortcut_keyseq;
     QKeySequence timer_lap_shortcut_keyseq;
 
     QString sound_file_path;
@@ -108,6 +127,10 @@ private:
     QString convertCountupSec(unsigned long msec);
     QString convertCountdownSec(unsigned long msec);
     QString convertMinSec(unsigned long msec);
+
+    void setV3GreenStyle();
+    void setV3YellowStyle();
+    void setV3RedStyle();
 
 };
 

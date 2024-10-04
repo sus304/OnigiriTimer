@@ -13,25 +13,32 @@ MainWindow::MainWindow(QWidget *parent)
     strCfgFile = "config.ini";
     QSettings settings(strCfgFile, QSettings::IniFormat);
 
+    //
     ui->radioButton_30s_sound_enable->setChecked(settings.value("SoundEnable", true).toBool());
 
+    //
     sound_file_path = settings.value("SoundFilePath", "").toString();
     ui->lineEdit_30s_sound_file_path->setText(sound_file_path);
-
     audio_output_p = new QAudioOutput();
     audio_output_p->setVolume(50);
     sound_player_p = new QMediaPlayer();
     sound_player_p->setAudioOutput(audio_output_p);
     sound_player_p->setSource(QUrl::fromLocalFile(sound_file_path));
 
+    //
     QString key;
     key = settings.value("v3ShortcutKey", "Ctrl+V").toString();
     timer_v3_shortcut_keyseq = QKeySequence(key);
     ui->lineEdit_timer_v3_shortcut_key->setText(timer_v3_shortcut_keyseq.toString());
+    key = settings.value("v3ReverseShortcutKey", "Ctrl+R").toString();
+    timer_v3_reverse_shortcut_keyseq = QKeySequence(key);
+    ui->lineEdit_timer_v3_reverse_shortcut_key->setText(timer_v3_reverse_shortcut_keyseq.toString());
     key = settings.value("LapShortcutKey", "Ctrl+L").toString();
     timer_lap_shortcut_keyseq = QKeySequence(key);
     ui->lineEdit_timer_lap_shortcut_key->setText(timer_lap_shortcut_keyseq.toString());
 
+    //
+    setV3GreenStyle();
     ui->label_timer_v3_countup->setText(convertCountupSec(0));
     ui->label_timer_v3_countdown->setText(convertCountdownSec(0));
     ui->label_timer_lap_countup->setText(convertMinSec(0));
@@ -43,12 +50,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->label_laptime_log4->setText(convertMinSec(0));
     ui->label_laptime_log5->setText(convertMinSec(0));
 
-    // timer_v3_ms_p = new QTimer(this);
-    // connect(timer_v3_ms_p, &QTimer::timeout, this, &MainWindow::updateTimerV3);
-
-    // timer_lap_p = new QTimer(this);
-    // connect(timer_lap_p, &QTimer::timeout, this, &MainWindow::updateTimerLap);
-
+    //
     timer_worker_v3 = new TimerWorker();
     timer_worker_v3->setTimeStep(CONST_V3_TIMESTEP);
     connect(timer_worker_v3, &TimerWorker::timeoutForControlThread, this, &MainWindow::updateTimerV3);
@@ -94,6 +96,22 @@ QString MainWindow::convertMinSec(unsigned long msec) {
     return QString(QString::fromStdString(time_str));
 }
 
+void MainWindow::setV3GreenStyle() {
+    ui->label_v3_current_indicator->setStyleSheet(groupbox_green_style);
+    ui->label_timer_v3_countup->setStyleSheet(groupbox_green_style);
+    ui->label_timer_v3_countdown->setStyleSheet(groupbox_green_style);
+}
+void MainWindow::setV3YellowStyle() {
+    ui->label_v3_current_indicator->setStyleSheet(groupbox_yellow_style);
+    ui->label_timer_v3_countup->setStyleSheet(groupbox_yellow_style);
+    ui->label_timer_v3_countdown->setStyleSheet(groupbox_yellow_style);
+}
+void MainWindow::setV3RedStyle() {
+    ui->label_v3_current_indicator->setStyleSheet(groupbox_red_style);
+    ui->label_timer_v3_countup->setStyleSheet(groupbox_red_style);
+    ui->label_timer_v3_countdown->setStyleSheet(groupbox_red_style);
+}
+
 // timer_v3の発火イベント
 void MainWindow::updateTimerV3() {
     time_v3 += CONST_V3_TIMESTEP;
@@ -102,8 +120,9 @@ void MainWindow::updateTimerV3() {
     if (time_v3 <= 30000) {
         ui->label_timer_v3_countdown->setText(convertCountdownSec(time_v3));
         if (time_v3 == 30000) {
+            setV3GreenStyle();
             if (ui->radioButton_30s_sound_enable->isChecked()) {
-               try {
+                try {
                    sound_player_p->play();
               } catch (...) {
               }
@@ -128,7 +147,7 @@ void MainWindow::startTimerV3(){
 
     ui->label_timer_v3_countup->setText(convertCountupSec(0));
     ui->label_timer_v3_countdown->setText(convertCountdownSec(0));
-
+    setV3YellowStyle();
 }
 
 void MainWindow::startTimerLap() {
@@ -181,6 +200,9 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
         if (timer_v3_shortcut_keyseq.matches(current_key)) {
             startTimerV3();
             return true;
+        } else if (timer_v3_reverse_shortcut_keyseq.matches(current_key)) {
+            setV3RedStyle();
+            return true;
         } else if (timer_lap_shortcut_keyseq.matches(current_key)) {
             startTimerLap();
             return true;
@@ -195,6 +217,12 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event) {
 void MainWindow::on_pushButton_timer_v3_start_clicked()
 {
     startTimerV3();
+}
+
+
+void MainWindow::on_pushButton_timer_v3_reverse_clicked()
+{
+    setV3RedStyle();
 }
 
 
@@ -238,6 +266,17 @@ void MainWindow::on_pushButton_timer_v3_shortcut_fix_clicked()
 
     QSettings settings(strCfgFile, QSettings::IniFormat);
     settings.setValue("v3ShortcutKey", timer_v3_shortcut_keyseq.toString());
+    settings.sync();
+}
+
+
+void MainWindow::on_pushButton_timer_v3_reverse_shortcut_fix_clicked()
+{
+    timer_v3_reverse_shortcut_keyseq = ui->keySequenceEdit_timer_v3_reverse_shortcut->keySequence();
+    ui->lineEdit_timer_v3_reverse_shortcut_key->setText(timer_v3_reverse_shortcut_keyseq.toString());
+
+    QSettings settings(strCfgFile, QSettings::IniFormat);
+    settings.setValue("v3ReverseShortcutKey", timer_v3_reverse_shortcut_keyseq.toString());
     settings.sync();
 }
 
@@ -308,3 +347,7 @@ void TimerWorker::stop() {
 void TimerWorker::onThreadStoped() {
     timer_p->stop();
 }
+
+
+
+
