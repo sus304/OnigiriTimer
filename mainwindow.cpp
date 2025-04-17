@@ -59,6 +59,12 @@ MainWindow::MainWindow(QWidget *parent)
     timer_worker_lap->setTimeStep(CONST_LAP_TIMESTEP);
     connect(timer_worker_lap, &TimerWorker::timeoutForControlThread, this, &MainWindow::updateTimerLap);
 
+    //
+    time_lap = 0;
+    for(int i=0; i < 5; ++i) {
+        lap_log[i] = 0;
+    }
+
     this->setFocus();
 }
 
@@ -171,13 +177,25 @@ void MainWindow::startTimerLap() {
 
     // 5周速の更新
     unsigned long sum = 0;
-    sum = lap_log[0] + lap_log[1] + lap_log[2] + lap_log[3] + lap_log[4];
-    unsigned long average = sum / 5;
+    unsigned char count = 0;
+    sum = 0;
+    count = 0;
+    for(int i=0; i < 5; ++i) {
+        if (lap_log[i] != 0) {
+            sum += lap_log[i];
+            count += 1;
+        }
+    }
+    // sum = lap_log[0] + lap_log[1] + lap_log[2] + lap_log[3] + lap_log[4];
+    unsigned long average = sum / count;
+    if (count == 0) {
+        average = 0;
+    }
     ui->label_laptime_average->setText(convertMinSec(average));
 
     // 時速の更新
-    float hour = (float)lap_log[0] / 1000.0 / 60.0 / 60.0;
-    float speed = std::floor(1150.0 / hour);
+    float hour = (float)sum / 1000.0 / 60.0 / 60.0;
+    unsigned long speed = std::floor((230.0 * count) / hour);
     ui->label_speed->setText(QString::number(speed));
 
     ui->label_timer_lap_countup->setText(convertMinSec(0));
